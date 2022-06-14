@@ -10,33 +10,64 @@ const trueCarScraper = require('../scrapers/trueCarScraper.js');
 const pgController = {};
 
 pgController.getCarsComData = async (req, res, next) => {
- //console.log(req.params)
- const { make, model, minYear, zip } = req.params;
- res.locals.carsComData = await carsDotComScraper(make, model, minYear, zip);
+  try{
+    //console.log(req.params)
+    const { make, model, minYear, zip } = req.params;
+    res.locals.carsComData = await carsDotComScraper(make, model, minYear, zip);
 
- return next();
+    return next();
+  }
+  catch(err){
+    return next({ 
+      log: 'Error inside the getCarsComData middleware',
+      message: { err }
+    })
+  }
 }
 
 pgController.getAutoTraderData = async (req, res, next) => {
+  try{
   const { make, model, minYear, zip } = req.params;
   res.locals.autoTraderData = await autoTraderScraper(make, model, minYear, zip);
  
   return next();
+  }
+  catch(err){
+    return next({ 
+      log: 'Error inside the getCarsComData middleware',
+      message: { err }
+    })
+  }
  }
 
  pgController.getCarGurusData = async (req, res, next) => {
-  const { make, model, minYear, zip } = req.params;
-  res.locals.carGurusData = await carGurusScraper(make, model, minYear, zip);
- 
-  return next();
+  try {
+    const { make, model, minYear, zip } = req.params;
+    res.locals.carGurusData = await carGurusScraper(make, model, minYear, zip);
+    return next();
+  }
+  catch(err){
+    return next({ 
+      log: 'Error inside the getCarGurusData middleware',
+      message: { err }
+    })
+  }
  }
 
  pgController.getTrueCarData = async (req, res, next) => {
-  const { make, model, minYear, zip } = req.params;
-  res.locals.trueCarData = await trueCarScraper(make, model, minYear, zip);
- 
-  return next();
- }
+  try{
+    const { make, model, minYear, zip } = req.params;
+    res.locals.trueCarData = await trueCarScraper(make, model, minYear, zip);
+   
+    return next();
+  }
+  catch(err){
+    return next({ 
+      log: 'Error inside the getTrueCarData middleware',
+      message: { err }
+    })
+  }
+}
 
 // pgController.getCarGuruData = (req, res, next) => {
 //   const { make, model, minYear, zip } = req.body;
@@ -84,7 +115,10 @@ pgController.insertCarsComData = async (req, res, next) => {
         console.log(res.rows)
         return next()
       })
-      .catch(err => next(err));
+      .catch(err => next({ 
+        log: 'Error inside the insertCarsComData middleware',
+        message: { err }
+      }));
 }
 
 
@@ -104,7 +138,10 @@ pgController.getSavedData = (req, res, next) => {
       console.log(carInfo.rows)
       return next();
     })
-    .catch(err => (next(err)));
+    .catch(err => next({ 
+      log: 'Error inside the getSavedData middleware',
+      message: { err }
+    }));
 }
 
 module.exports = pgController;
