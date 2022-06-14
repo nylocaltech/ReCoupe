@@ -26,14 +26,6 @@
     "url": ""
   },
   "homepage": "",
-  "jest": {
-    "globalSetup": "./jest-setup.js",
-    "globalTeardown": "./jest-teardown.js",
-    "testEnvironment": "jest-environment-jsdom",
-    "setupFilesAfterEnv": [
-      "@testing-library/jest-dom/extend-expect"
-    ]
-  },
   "dependencies": {
     "@babel/plugin-transform-async-to-generator": "^7.1.0",
     "@babel/runtime": "^7.1.2",
