@@ -7,11 +7,11 @@
     "start": "cross-env NODE_ENV=production node server/server.js",
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "concurrently \"NODE_ENV=development nodemon server/server.js\" \"NODE_ENV=development webpack-dev-server --hot --open\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --verbose"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/team-rlb/scratch-project.git"
+    "url": "git+https://github.com/nylocaltech/caraggregatorplusplus"
   },
   "nodemonConfig": {
     "ignore": [
@@ -23,9 +23,17 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/team-rlb/scratch-project/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/team-rlb/scratch-project#readme",
+  "homepage": "",
+  "jest": {
+    "globalSetup": "./jest-setup.js",
+    "globalTeardown": "./jest-teardown.js",
+    "testEnvironment": "jest-environment-jsdom",
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom/extend-expect"
+    ]
+  },
   "dependencies": {
     "@babel/plugin-transform-async-to-generator": "^7.1.0",
     "@babel/runtime": "^7.1.2",
@@ -49,13 +57,15 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router": "^6.2.2",
-    "react-router-dom": "^6.2.2"
+    "react-router-dom": "^6.2.2",
+    "regenerator-runtime": "^0.13.9"
   },
   "devDependencies": {
     "@babel/core": "^7.18.2",
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.17.12",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.2.5",
     "concurrently": "^7.0.0",
     "cross-env": "^7.0.3",
@@ -64,7 +74,11 @@
     "eslint-plugin-react": "^7.29.2",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.0",
+    "jest-puppeteer": "^6.1.0",
     "nodemon": "^2.0.15",
+    "puppeteer": "^14.2.1",
     "sass": "^1.49.9",
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
