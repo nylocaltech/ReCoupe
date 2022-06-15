@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 const carGurusScraper = async (make, model, minYear, zip) => {
   const cars = [];
   cheerioScraperCarGurus = async (url) => {
-// 
+  // 
 
   let data = {}
   await axios(url)

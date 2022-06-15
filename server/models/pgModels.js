@@ -16,3 +16,11 @@ module.exports = {
     return pool.query(text, params, callback);
   }
 };
+
+// const text = 'SELECT * FROM cars'
+// pool.query(text)
+//   .then(response =>
+//     console.log(response.rows))
+//   .catch(err => {
+//     console.log(err);
+//   })
