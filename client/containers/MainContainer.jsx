@@ -5,9 +5,7 @@ import Tab from '@mui/material/Tab';
 import {Link} from 'react-router-dom';
 import { useState } from 'react';
 import { Typography, AppBar, Card, CardContent, CardActions, CardMedia, CssBaseline, Grid, Toolbar, Container } from '@material-ui/Core';
-import AutorenewIcon from '@mui/icons-material/Autorenew';
 import styles from '../styles.scss';
-// import themeOptions from '../Components/ThemeOptions';
 
 const MainContainer = () => {
 
@@ -29,7 +27,7 @@ const MainContainer = () => {
         <main>
           <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
             <Container maxWidth="false" id="homeBanner">
-            <Typography variant="h2" align='center' gutterBottom style={{ color: "white" }}>
+            <Typography variant="h2" align='center' gutterBottom style={{ color: "white"}}>
               (Re)Cycle
             </Typography>
             <Typography variant="h5" align='center' gutterBottom>
