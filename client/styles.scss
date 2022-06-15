@@ -4,7 +4,7 @@ $enable-shadows: true;
 $prefix: "mo-";
 
 // Then import Bootstrap
-@import "../node_modules/bootstrap/scss/bootstrap";
+// @import "../node_modules/bootstrap/scss/bootstrap";
 
 // Home
 #homeBanner {
@@ -17,5 +17,14 @@ $prefix: "mo-";
 
 // Search bar
  #search {
+    // border: 1px solid #ccc;
+    margin-top: -30px;
+    // margin-bottom: 100px;
+    // background-color: white !important;
+    // opacity: 0.75;
+}
 
+// App bar / Nav
+#nav {
+    display: flex;
 }

@@ -4,8 +4,9 @@ import { useState } from 'react';
 import CarsList from '../Components/CarsList';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import SendIcon from '@mui/icons-material/Send';
+// import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
+import Tab from '@mui/material/Tab';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 export default function CarsInfo() {
@@ -18,6 +19,7 @@ export default function CarsInfo() {
   const [year, setYear] = useState(2022);
   const [zip, setZip] = useState(10001);
 
+  // Adding MUI Theme -- is this working?
   const theme = createTheme({
     palette: {
       type: 'light',
@@ -33,6 +35,8 @@ export default function CarsInfo() {
     spacing: 8,
   });
 
+
+  // React using hooks to live update the forms after every keypress / value change
   const updateMake = (e) => {
     setMake(e.target.value)
   }
@@ -87,6 +91,6 @@ export default function CarsInfo() {
       <CarsList carsArr={autoTrader} name={'AutoTrader'}/>
       <CarsList carsArr={trueCar} name={'True Car'} />
     </div>
-    </>
+  </>
   )
 }
