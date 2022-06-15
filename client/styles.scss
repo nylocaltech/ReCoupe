@@ -1,0 +1,15 @@
+// Variable overrides first
+$primary: #900;
+$enable-shadows: true;
+$prefix: "mo-";
+
+// Then import Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Home
+#homeBanner {
+ background-image: url('https://cdn.hiconsumption.com/wp-content/uploads/2017/10/Best-Adventure-Vehicles-1087x725.jpg') !important;
+ background-repeat: no repeat !important;
+ background-size: 100% !important;
+ height: 500px !important;
+}

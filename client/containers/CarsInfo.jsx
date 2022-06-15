@@ -45,7 +45,7 @@ export default function CarsInfo() {
 
   return (
     <>
-     <Box
+     <Box id="search"
       component="form"
       sx={{
         '& > :not(style)': { m: 1, width: '25ch' },
@@ -57,7 +57,7 @@ export default function CarsInfo() {
       noValidate
       autoComplete="off"
     >
-      <TextField onChange={updateMake} color="secondary" label="Make" variant="outlined" />
+      <TextField onChange={updateMake} color="primary" label="Make" variant="outlined" />
       <TextField onChange={updateModel} id="outlined-basic" label="Model" variant="outlined" />
       <TextField onChange={updateYear} id="outlined-basic" label="Minimum Year" variant="outlined" />
       <TextField onChange={updateZip} id="outlined-basic" label="Zip" variant="outlined" />
