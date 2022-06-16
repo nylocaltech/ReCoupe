@@ -8,6 +8,7 @@ export default function QueryCreator() {
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(1);
   const [data, setData] = useState(' ');
+  const [preference, setPreference] = useState({vehicaltype: '', priority: ''});
   const [car, setCar] = useState([]);
 
   // const setBody = (make) => {
@@ -102,10 +103,15 @@ export default function QueryCreator() {
     console.log(min, max);
   }
 
+  const handleRecommend = (e) => {
+    document.querySelector('#recommendation_area').innerText = "Toyata Camry, Hyundai Sonata, Nissan Versa"
+  }
+
   useEffect(() => {
     console.log(min, max);
   }, [min, max]);
   
+
 
   /* fetch('/api/character', {
         method: 'POST',
@@ -130,19 +136,19 @@ export default function QueryCreator() {
            <legend>What's most important to you in a car?</legend>
             <label>
               <Typography variant='h8'>Fuel Efficiency</Typography>
-              <input name="priority" type="radio" value="env"/>
+              <input name="priority" type="checkbox" value="env" />
             </label>
             <label>
               <Typography variant='h8'>Cost</Typography>
-              <input name="priority" type="radio" value="cost"/>
+              <input name="priority" type="checkbox" value="cost"/>
             </label>
             <label>
              <Typography variant='h8'>Safety</Typography>
-              <input name="priority" type="radio" value="safety"/>
+              <input name="priority" type="checkbox" value="safety"/>
             </label>
             <label>
             <Typography variant='h8'>Style</Typography>
-              <input name="priority" type="radio" value="luxury"/>
+              <input name="priority" type="checkbox" value="luxury"/>
             </label>
           </fieldset>
 
@@ -150,23 +156,23 @@ export default function QueryCreator() {
            <legend>What kind of car are you looking for?</legend>
             <label>
               <Typography variant='h8'>Sedan</Typography>
-              <input name="priority" type="radio" value="sedan"/>
+              <input name="priority" type="checkbox" value="sedan"/>
             </label>
             <label>
               <Typography variant='h8'>Van</Typography>
-              <input name="priority" type="radio" value="van"/>
+              <input name="priority" type="checkbox" value="van"/>
             </label>
             <label>
              <Typography variant='h8'>Truck</Typography>
-              <input name="priority" type="radio" value="truck"/>
+              <input name="priority" type="checkbox" value="truck"/>
             </label>
             <label>
             <Typography variant='h8'>SUV</Typography>
-              <input name="priority" type="radio" value="suv"/>
+              <input name="priority" type="checkbox" value="suv"/>
             </label>
             <label>
             <Typography variant='h8'>Luxury Coupe</Typography>
-              <input name="priority" type="radio" value="coupe"/>
+              <input name="priority" type="checkbox" value="coupe"/>
             </label>
           </fieldset>
 
@@ -177,14 +183,15 @@ export default function QueryCreator() {
         color: '#000000',
         padding: "8px 6px",
         fontSize: "14px"
-            }} variant="outlined">Submit</Button>
+            }} variant="outlined" onClick={e => handleRecommend(e)}>Submit</Button>
         </form>
 
         <br/>
         <br/>
 
         <h3> Based on your preferences, we recommend...</h3>
-        <Typography variant='h3'></Typography>
+        <h4 id="recommendation_area"></h4>
+        {/* <Typography variant='h3' id="recommendation_area"></Typography> */}
           
         <hr/>
         <br/>
