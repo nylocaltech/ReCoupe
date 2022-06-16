@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs');
 // "price" integer NOT NULL,
 // "image" varchar NOT NULL,
 // "mileage" integer NOT NULL,
@@ -98,6 +99,9 @@ async function start(make, model, minYear, zip){
     Alldata.push(data)
   }
   console.log(Alldata)
+  fs.writeFile('data.txt', JSON.stringify(Alldata, null, 2), (err) => {
+    console.log(err);
+  });
   await browser.close()
 }
 
