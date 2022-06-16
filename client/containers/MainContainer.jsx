@@ -33,9 +33,6 @@ const MainContainer = () => {
               <Link to={'/login'}>
                 <Tab label="Log In" />
               </Link>
-              <Link to={'/hello'}>
-                <Tab label="Show Hello" />
-              </Link>
           </Toolbar>
         </AppBar>
         
