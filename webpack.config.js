@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+  devtool: "eval-cheap-source-map",
   mode: process.env.NODE_ENV,
   entry: "./client/index.js",
   output: {
@@ -45,6 +46,7 @@ module.exports = {
     proxy: {
       "/api": "http://localhost:3000",
       "/db": "http://localhost:3000",
+      "/user": "http://localhost:3000",
     },
   },
   resolve: {

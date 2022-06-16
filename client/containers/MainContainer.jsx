@@ -8,6 +8,7 @@ import { Typography, AppBar, Card, CardContent, CardActions, CardMedia, CssBasel
 import styles from '../styles.scss';
 import CarsInfo from './CarsInfo';
 import Trends from './Trends.jsx';
+import Hello from '../Components/Hello';
 
 const MainContainer = () => {
 
@@ -29,12 +30,18 @@ const MainContainer = () => {
               <Link to={'/trends'}>
                 <Tab label="Trends" />
               </Link>
+              <Link to={'/login'}>
+                <Tab label="Log In" />
+              </Link>
+              <Link to={'/hello'}>
+                <Tab label="Show Hello" />
+              </Link>
           </Toolbar>
         </AppBar>
         
         <main>
           <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
-            <Container maxWidth="false" id="homeBanner">
+            <Container id="homeBanner">
             {/* <img src='https://i.ibb.co/7G0TVrP/Png-Item-2905296-removebg-preview.png' alt='logo' style={{width: "90px"}}></img> */}
             <Typography variant="h2" align='center' gutterBottom style={{ color: "white"}}>
               (Re)Coupe
