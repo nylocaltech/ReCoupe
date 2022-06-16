@@ -17,6 +17,7 @@ const App = () => (
                 exact path="/trends"
                 element={<Trends />}
             />
+        
         </Routes>
     </div>
 );
