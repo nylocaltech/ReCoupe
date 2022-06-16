@@ -4,6 +4,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import {Link} from 'react-router-dom';
 import { useState } from 'react';
+import Trends from './Trends.jsx';
 
 const MainContainer = () => {
 

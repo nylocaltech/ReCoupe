@@ -12,27 +12,28 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import { MenuProps, useStyles, options } from "../Utils";
 
 export default function QueryCreator() {
-    const classes = useStyles();
-    const [selected, setSelected] = useState([]);
-    const isAllSelected =
-      options.length > 0 && selected.length === options.length;
+    // const classes = useStyles();
+    // const [selected, setSelected] = useState([]);
+    // const isAllSelected =
+    //   options.length > 0 && selected.length === options.length;
   
-    const handleChange = (event) => {
-      const value = event.target.value;
-      if (value[value.length - 1] === "all") {
-        setSelected(selected.length === options.length ? [] : options);
-        return;
-      }
-      setSelected(value);
-    };
+    // const handleChange = (event) => {
+    //   const value = event.target.value;
+    //   if (value[value.length - 1] === "all") {
+    //     setSelected(selected.length === options.length ? [] : options);
+    //     return;
+    //   }
+    //   setSelected(value);
+    // };
   
     return (
       <div id='QueryBuilder'>
 
         {/* === FORM ===
-        Select type of vehicle */}
+        Select type of vehicle 
         <h3> What type of vehicle are you interested in? </h3>
 
         <FormControl className={classes.formControl}>
@@ -65,7 +66,7 @@ export default function QueryCreator() {
                 primary="Select All"
                 />
             </MenuItem>
-            {let options = ['Sedan', 'Coupe']}
+            {let options = ['Sedan', 'Coupe']} 
             {options.map((option) => (
                 <MenuItem key={option} value={option}>
                 <ListItemIcon>
@@ -75,13 +76,13 @@ export default function QueryCreator() {
                 </MenuItem>
             ))}
             </Select>
-        </FormControl>
+        </FormControl> }
 
         {/* Select which values are important to you */}
 
         <h3> What's most important to you in a car? (Check all that apply) </h3>
 
-        <FormControl fullWidth>
+        {/* <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Energy Efficiency</InputLabel>
                 <Select
                     labelId="demo-simple-select-label"
@@ -95,7 +96,7 @@ export default function QueryCreator() {
                     <MenuItem value={"Environment"}>Luxury</MenuItem>
                     <MenuItem value={"Environment"}>Safety</MenuItem>
                 </Select>
-        </FormControl>
+        </FormControl> */}
 
       </div>
     );
