@@ -8,6 +8,7 @@ export default function QueryCreator() {
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(1);
   const [data, setData] = useState(' ');
+  const [car, setCar] = useState([]);
 
   // const setBody = (make) => {
   //   const body = {
@@ -30,6 +31,28 @@ export default function QueryCreator() {
   //   })
   // }
 
+
+  const advanceQuery = ((e, min, max) => {
+    e.preventDefault();
+    fetch(`/db/requestByRange/${min}/${max}/${make}`, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data, '<-- data from advance query')
+      //   for(let i = 0; i < data.length; i++){
+      //     carObj.push(data[i]);
+      //   }
+      //   console.log(carObj)
+      // })
+      console.log(data.cars)
+        setCar(data.cars);
+      })
+      .catch(err=>err);
+    })
 
   useEffect(() => {
     console.log('component did mount');
@@ -211,6 +234,7 @@ export default function QueryCreator() {
         <h3>Max: {max}</h3>
         {/* <h4> Search by Price Range </h4> */}
         <Slider
+          className='carMinPrice'
           getAriaLabel={() => 'Price range'}
           min={min}
           max={max}
@@ -219,6 +243,7 @@ export default function QueryCreator() {
           valueLabelDisplay="auto"
         />
         <Slider
+          className = 'carMaxPrice'
           getAriaLabel={() => 'Price range'}
           min={min}
           max={max}
@@ -226,6 +251,20 @@ export default function QueryCreator() {
           onChange={handleChange}
           valueLabelDisplay="auto"
         />
+        <button onClick={(e) => {
+          // console.log(document.querySelectorAll('.MuiSlider-valueLabelLabel'))
+          // console.log(document.querySelectorAll('.MuiSlider-valueLabelLabel').innerText)
+          // let minAndMax = document.querySelectorAll('.MuiSlider-valueLabelLabel').innerText;
+          // let min = minAndMax[0];
+          // let max = minAndMax[1];
+          // console.log(min, max);
+          //advanceQuery(min, max);
+          advanceQuery(e, 2000, 30000)
+        }}>submit</button>
+
+        <h4> Order by Mileage </h4>
+        <h4> Order by Price </h4>
+        <h5> Sources </h5>
           {/* </div> */}
       
        
@@ -278,6 +317,8 @@ export default function QueryCreator() {
         <h7>(highlights best deals)</h7>
         <h4>Histogram: types of cars</h4>
 
+
+        <CarsList carsArr = {car} name={'True Car'}/>
       </div>
       </>
     );
