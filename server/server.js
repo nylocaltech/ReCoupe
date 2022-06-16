@@ -4,7 +4,7 @@ const cors = require("cors");
 const app = express();
 
 const dbRouter = require("./routes/db");
-
+const userRouter = require("./routes/user")
 const apiRouter = require("./routes/api");
 
 const PORT = 3000;
@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
  */
 app.use("/api", apiRouter);
 app.use("/db", dbRouter);
+app.use("/user", userRouter);
 
 app.use("*", (req, res) => res.status(404).send("Woops! Page not found!"));
 
