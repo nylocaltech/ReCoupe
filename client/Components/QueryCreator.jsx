@@ -5,8 +5,8 @@ import CarsList from '../Components/CarsList';
 
 export default function QueryCreator() {
   const [make, setMake] = useState('');
-  const [min, setMin] = useState('');
-  const [max, setMax] = useState('');
+  const [min, setMin] = useState(0);
+  const [max, setMax] = useState(1);
   const [data, setData] = useState(' ');
 
   // const setBody = (make) => {
@@ -74,10 +74,14 @@ export default function QueryCreator() {
   }, [make]);
 
   const handleChange = (e) => {
-    setMin(e.target.value[0]);
-    setMax(e.target.value[1]);
+    console.log(e.target)
+
     console.log(min, max);
   }
+
+  useEffect(() => {
+    console.log(min, max);
+  }, [min, max]);
   
 
   /* fetch('/api/character', {
@@ -167,19 +171,29 @@ export default function QueryCreator() {
                     <option value="Toyota">Toyota</option>
                     <option value="Volkswagen">Volkswagen</option>
           </select>
-          <div>
-            {/* price range slider */}
+         {/*  <div>
             <h3>Min: {min}</h3>
             <h3>Max: {max}</h3>
             <input id="priceSlider" type="range" min={min} max={max} oninput="amount.value=rangeInput.value" />
             <input id="amount" type="number" min={min} max={max}oninput="rangeInput.value=amount.value" />
-          </div>
+          </div> */}
         </form> 
-
+        <h3>Min: {min}</h3>
+        <h3>Max: {max}</h3>
         <h4> Search by Price Range </h4>
         <Slider
           getAriaLabel={() => 'Price range'}
-          value={[min, max]}
+          min={min}
+          max={max}
+          //value={[min, max]}
+          onChange={handleChange}
+          valueLabelDisplay="auto"
+        />
+        <Slider
+          getAriaLabel={() => 'Price range'}
+          min={min}
+          max={max}
+          //value={[min, max]}
           onChange={handleChange}
           valueLabelDisplay="auto"
         />
