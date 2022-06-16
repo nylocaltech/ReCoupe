@@ -11,13 +11,9 @@ const fs = require("fs");
 // "date" varchar NOT NULL,
 // UNIQUE (url),
 
-<<<<<<< HEAD
-async function start(make, model, minYear, zip){
-  const browser = await puppeteer.launch({headless: false});
-=======
+
 async function start(make, model, minYear, zip) {
-  const browser = await puppeteer.launch();
->>>>>>> dev
+  const browser = await puppeteer.launch({headless: false});
   const page = await browser.newPage();
   //await page.goto(`https://www.truecar.com/used-cars-for-sale/listings/${make}/${model}/year-${minYear}-max/location-${zip}/?sort[]=price_asc`)
 

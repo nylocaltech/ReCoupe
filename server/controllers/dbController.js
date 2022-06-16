@@ -29,11 +29,11 @@ dbController.getAllCars = (req, res, next) => {
   // const querObj = {
   //   text: "SELECT * FROM usedcar.cars ORDER BY price;"
   // };
-  
+
   db.query("SELECT * FROM usedcar.cars ORDER BY price;")
     .then((response) => {
       res.locals.cars = response.rows;
-      console.log(res.locals.cars)
+      console.log(res.locals.cars);
       console.log("query for all cars successful");
       return next();
     })
@@ -48,10 +48,10 @@ dbController.getAllCars = (req, res, next) => {
 
 dbController.getCarsByMake = (req, res, next) => {
   //const { make } = req.body;
-  const {make} = req.params
-  console.log(req, 'request object')
-  console.log(req.params, 'request params');
-  console.log(make, 'this is make');
+  const { make } = req.params;
+  console.log(req, "request object");
+  console.log(req.params, "request params");
+  console.log(make, "this is make");
   const queryObj = {
     text: "SELECT * FROM usedcar.cars WHERE make = $1 ORDER BY price;",
     values: [make],
@@ -74,7 +74,7 @@ dbController.getCarsByMake = (req, res, next) => {
 
 // cars by price range
 dbController.getCarsByPriceRange = (req, res, next) => {
-  const {minPrice, maxPrice} = req.body;
+  const { minPrice, maxPrice } = req.body;
 
   const queryObj = {
     text: "SELECT * FROM usedcar.cars WHERE $1 < price AND price < $2 ORDER BY price;",
@@ -96,7 +96,30 @@ dbController.getCarsByPriceRange = (req, res, next) => {
     });
 };
 
-  
+dbController.getByRange = (req, res, next) => {
+  const { min, max, make } = req.params;
+  console.log(make, min, max);
+
+  const queryObj = {
+    text: "SELECT * FROM usedcar.cars WHERE make = $1 AND $2 < price AND price < $3 ORDER BY price;",
+    values: [make, min, max],
+  };
+
+  db.query(queryObj)
+    .then((response) => {
+      res.locals.cars = response.rows;
+      console.log("query for cars by price range");
+      return next();
+    })
+    .catch((err) => {
+      return next({
+        log: "Error in query for cars by price range",
+        status: 400,
+        message: { err: "An error occurred" },
+      });
+    });
+};
+
 dbController.insertCarsData = (req, res, next) => {
   const { price, image, mileage, year, make, model, url, zip, date, dealer } =
     req.body;
