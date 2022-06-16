@@ -25,6 +25,7 @@ CREATE TABLE public.cars (
     "url" varchar NOT NULL,
     "zip" integer NOT NULL,
     "date" varchar NOT NULL,
+    "dealer" varchar NOT NULL,
     UNIQUE (url),
     CONSTRAINT "cars_pk" PRIMARY KEY ("_id")
 ) WITH (

@@ -1,32 +1,35 @@
-const path = require('path');
-const express = require('express');
-const cors = require('cors')
+const path = require("path");
+const express = require("express");
+const cors = require("cors");
 const app = express();
 
-const apiRouter = require('./routes/api');
+const dbRouter = require("./routes/db");
+
+const apiRouter = require("./routes/api");
 
 const PORT = 3000;
 
 /**
  * handle parsing request body
  */
- app.use(cors());
- app.use(express.json());
- app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 /**
  * define route handlers
  */
-app.use('/api', apiRouter);
+app.use("/api", apiRouter);
+app.use("/db", dbRouter);
 
-app.use('*', (req, res) => res.status(404).send('Woops! Page not found!'));
+app.use("*", (req, res) => res.status(404).send("Woops! Page not found!"));
 
 // global error handler
 app.use((err, req, res, next) => {
   const defaultErr = {
-    log: 'Express error handler caught unknown middleware error',
+    log: "Express error handler caught unknown middleware error",
     status: 500,
-    message: { err: 'An error occurred' },
+    message: { err: "An error occurred" },
   };
   const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log);
