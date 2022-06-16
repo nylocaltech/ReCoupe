@@ -16,7 +16,8 @@ async function start(make, model, minYear, zip){
   const page = await browser.newPage();
   //await page.goto(`https://www.truecar.com/used-cars-for-sale/listings/${make}/${model}/year-${minYear}-max/location-${zip}/?sort[]=price_asc`)
 
-  await page.goto(`https://www.truecar.com/used-cars-for-sale/listings/toyota/camry/year-2012-max/location-11228/?sort[]=price_asc`)
+  await page.goto(`https://www.truecar.com/used-cars-for-sale/listings/body-suv/location-new-york-ny/?sort[]=best_deal_desc_script`)
+
 
   let Alldata = [];
 
@@ -95,12 +96,13 @@ async function start(make, model, minYear, zip){
       url: urlData[i],
       zip: 11228,
       date: actualDate,
-      dealer: 'TrueCars.com'
+      dealer: 'TrueCars.com',
+      vehicletype: 'SUV'
     }
     Alldata.push(data)
   }
   console.log(Alldata)
-  fs.writeFile('data.txt', JSON.stringify(Alldata, null, 2), (err) => {
+  fs.writeFile('SUV_data.txt', JSON.stringify(Alldata, null, 2), (err) => {
     console.log(err);
   });
   await browser.close()
