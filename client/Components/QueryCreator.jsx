@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Checkbox, FormGroup, Slider } from '@mui/material';
 import CarsList from '../Components/CarsList';
+import Typography from '@mui/material/Typography';
 
 export default function QueryCreator() {
   const [make, setMake] = useState('');
@@ -31,7 +32,8 @@ export default function QueryCreator() {
   // }
 
 
-  const advanceQuery = ((min, max) => {
+  const advanceQuery = ((e, min, max) => {
+    e.preventDefault();
     fetch(`/db/requestByRange/${min}/${max}/${make}`, {
       method: 'GET',
       headers: {
@@ -119,62 +121,81 @@ export default function QueryCreator() {
 
   
     return (
+      <>
       <div id='QueryBuilder'>
-
-        <h3> What's most important to you in a car? </h3>
+        <Typography variant='h4'>Car Recommender</Typography>
+        <br/>
         <form> 
-          <fieldset>
+          <fieldset class='fieldset'>
+           <legend>What's most important to you in a car?</legend>
             <label>
-              <p>Fuel Efficiency</p>
+              <Typography variant='h8'>Fuel Efficiency</Typography>
               <input name="priority" type="radio" value="env"/>
             </label>
             <label>
-              <p>Cost</p>
+              <Typography variant='h8'>Cost</Typography>
               <input name="priority" type="radio" value="cost"/>
             </label>
             <label>
-              <p>Safety</p>
+             <Typography variant='h8'>Safety</Typography>
               <input name="priority" type="radio" value="safety"/>
             </label>
             <label>
-              <p>Style</p>
+            <Typography variant='h8'>Style</Typography>
               <input name="priority" type="radio" value="luxury"/>
             </label>
           </fieldset>
-        </form>
 
-        <h3> What kind of car are you looking for? </h3>
-
-        <form> 
-          <fieldset>
+          <fieldset class='fieldset'>
+           <legend>What kind of car are you looking for?</legend>
             <label>
-              <p>Sedan</p>
-              <input name="vehicletype" type="radio" value="sedan"/>
+              <Typography variant='h8'>Sedan</Typography>
+              <input name="priority" type="radio" value="sedan"/>
             </label>
             <label>
-              <p>Van</p>
-              <input name="vehicletype" type="radio" value="van"/>
+              <Typography variant='h8'>Van</Typography>
+              <input name="priority" type="radio" value="van"/>
             </label>
             <label>
-              <p>Truck</p>
-              <input name="vehicletype" type="radio" value="truck"/>
+             <Typography variant='h8'>Truck</Typography>
+              <input name="priority" type="radio" value="truck"/>
             </label>
             <label>
-              <p>SUV</p>
-              <input name="vehicletype" type="radio" value="suv"/>
+            <Typography variant='h8'>SUV</Typography>
+              <input name="priority" type="radio" value="suv"/>
             </label>
             <label>
-              <p>Luxury Coupe</p>
-              <input name="vehicletype" type="radio" value="coupe"/>
+            <Typography variant='h8'>Luxury Coupe</Typography>
+              <input name="priority" type="radio" value="coupe"/>
             </label>
           </fieldset>
-          <button> Submit </button>
+
+          <br/>
+          <Button style={{
+        borderRadius: 5,
+        backgroundColor: '#fafafa',
+        color: '#000000',
+        padding: "8px 6px",
+        fontSize: "14px"
+            }} variant="outlined">Submit</Button>
         </form>
 
-        <h3> We recommend ...</h3>
+        <br/>
+        <br/>
 
-        <h4> Search by Brands </h4>
-        <form>
+        <h3> Based on your preferences, we recommend...</h3>
+        <Typography variant='h3'></Typography>
+          
+        <hr/>
+        <br/>
+        <br/>
+
+        <Typography variant='h4'> Custom Query Builder</Typography>
+            <br />
+        <fieldset class='fieldset'>
+            <br />
+            <legend>Search Used Cars By Brand</legend>  
+        
           <select value={ make } onChange={(e) => { setMake(e.target.value)}}>
                     <option value="Blank">Please select one</option>
                     <option value="Audi">Audi</option>
@@ -192,16 +213,26 @@ export default function QueryCreator() {
                     <option value="Toyota">Toyota</option>
                     <option value="Volkswagen">Volkswagen</option>
           </select>
+          </fieldset>
+        <form>
+
+        <fieldset class='fieldset'>
+            <br />
+            <legend>Search Used Cars By Price Range</legend>  
+      
+          <div>
+            {/* price range slider */}
          {/*  <div>
             <h3>Min: {min}</h3>
             <h3>Max: {max}</h3>
             <input id="priceSlider" type="range" min={min} max={max} oninput="amount.value=rangeInput.value" />
             <input id="amount" type="number" min={min} max={max}oninput="rangeInput.value=amount.value" />
           </div> */}
-        </form> 
+          </div>
+        {/* </form>  */}
         <h3>Min: {min}</h3>
         <h3>Max: {max}</h3>
-        <h4> Search by Price Range </h4>
+        {/* <h4> Search by Price Range </h4> */}
         <Slider
           className='carMinPrice'
           getAriaLabel={() => 'Price range'}
@@ -220,7 +251,7 @@ export default function QueryCreator() {
           onChange={handleChange}
           valueLabelDisplay="auto"
         />
-        <button onClick={() => {
+        <button onClick={(e) => {
           // console.log(document.querySelectorAll('.MuiSlider-valueLabelLabel'))
           // console.log(document.querySelectorAll('.MuiSlider-valueLabelLabel').innerText)
           // let minAndMax = document.querySelectorAll('.MuiSlider-valueLabelLabel').innerText;
@@ -228,15 +259,57 @@ export default function QueryCreator() {
           // let max = minAndMax[1];
           // console.log(min, max);
           //advanceQuery(min, max);
-          advanceQuery(2000, 30000)
+          advanceQuery(e, 2000, 30000)
         }}>submit</button>
 
         <h4> Order by Mileage </h4>
         <h4> Order by Price </h4>
         <h5> Sources </h5>
+          {/* </div> */}
+      
+       
+        </fieldset>
+        </form> 
 
+          <hr/>
+          
 
-        <h1> Display results: </h1>
+  <fieldset class='fieldset'>
+            <legend>Check these listings:</legend>  
+            <label>
+              <Typography variant='h7'>AutoTrader</Typography>
+              <input name="priority" type="checkbox" value="autotrader"/>
+            </label>
+            <label>
+              <Typography variant='h7'>Car Gurus</Typography>
+              <input name="priority" type="checkbox" value="cargurus"/>
+            </label>
+            <label>
+              <Typography variant='h7'>Cars.com</Typography>
+              <input name="priority" type="checkbox" value="carscom"/>
+            </label>
+            <label>
+              <Typography variant='h7'>TrueCar.com</Typography>
+              <input name="priority" type="checkbox" value="truecar"/>
+            </label>
+          </fieldset>
+
+          <fieldset>
+          <legend>Order By:</legend>  
+          <label>
+              <Typography variant='h7'>Order by Mileage</Typography>
+              <input name="priority" type="radio" value="env"/>
+            </label>
+            <label>
+              <Typography variant='h7'>OrderByPrice</Typography>
+              <input name="priority" type="radio" value="cost"/>
+            </label>
+            </fieldset>
+
+            <hr/>
+            <br />
+
+            <Typography variant='h4'>Display Results</Typography>
 
         <h4>Count of Results</h4>
         <h4>Average Price</h4>
@@ -247,6 +320,7 @@ export default function QueryCreator() {
 
         <CarsList carsArr = {car} name={'True Car'}/>
       </div>
+      </>
     );
   }
   
