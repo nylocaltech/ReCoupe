@@ -5,16 +5,93 @@ import CarsList from '../Components/CarsList';
 
 export default function QueryCreator() {
   const [make, setMake] = useState('');
-  const [priceRange, setPriceRange] = useState('');
   const [min, setMin] = useState('');
   const [max, setMax] = useState('');
   const [data, setData] = useState(' ');
 
-  useEffect(() => {
-    console.log('heeey')
-    // send fetch request to get all cars
+  // const setBody = (make) => {
+  //   const body = {
+  //     make,
+  //   }
+  //   fetch('/db/requestByMake', {
+  //     method: 'POST',
+  //     header: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(body)
+  //   })
+  //   .then(data => data.json())
+  //   .then(data => {
+  //     console.log(data, '<-- data from selected car');
+  //     console.log(data[0]);
+  //     setData(data);
+  //     setMin(data[0].price);
+  //     setMax(data[data.length-1].price);
+  //   })
+  // }
 
-  }, [state])
+
+  useEffect(() => {
+    console.log('component did mount');
+    // send fetch request to get all cars
+    fetch('/db/', {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data, '<-- data from get all cars');
+        console.log(data[0]);
+        setData(data);
+        setMin(data[0].price);
+        setMax(data[data.length - 1].price);
+      })
+      .catch(err => console.log(err));
+  }, [])
+
+  useEffect(() => {
+    console.log(make);
+    // fetch('/db/requestByMake', {
+      fetch(`/db/requestByMake/${make}`, {
+      method: 'GET',
+      header: {
+        'Content-Type': 'application/json',
+      },
+      // body: {
+      //   "make": "Honda"
+      // }
+    })
+    .then(data => data.json())
+    .then(data => {
+      console.log(data, '<-- data from selected car');
+      console.log(data[0]);
+      setData(data.cars);
+      setMin(data.cars[0].price);
+      setMax(data.cars[data.cars.length-1].price);
+    })
+  }, [make]);
+
+  const handleChange = (e) => {
+    setMin(e.target.value[0]);
+    setMax(e.target.value[1]);
+    console.log(min, max);
+  }
+  
+
+  /* fetch('/api/character', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'Application/JSON'
+        },
+        body: JSON.stringify(body)
+      })
+        .then(resp => resp.json())
+        .then((data) => {
+          console.log(data);
+        }) */
+
   
     return (
       <div id='QueryBuilder'>
@@ -71,9 +148,9 @@ export default function QueryCreator() {
 
         <h3> We recommend ...</h3>
 
-        <h4> Search by Make </h4>
+        <h4> Search by Brands </h4>
         <form>
-          <select value={ language } onChange={(e) => { setLanguage(e.target.value);}}>
+          <select value={ make } onChange={(e) => { setMake(e.target.value)}}>
                     <option value="Blank">Please select one</option>
                     <option value="Audi">Audi</option>
                     <option value="BMW">BMW</option>
@@ -92,23 +169,25 @@ export default function QueryCreator() {
           </select>
           <div>
             {/* price range slider */}
-            <input id="priceSlider" type="range" min={this.state.min} max={this.state.max} oninput="amount.value=rangeInput.value" />
-            <input id="amount" type="number" value="100" min="0" max="200" oninput="rangeInput.value=amount.value" />
+            <h3>Min: {min}</h3>
+            <h3>Max: {max}</h3>
+            <input id="priceSlider" type="range" min={min} max={max} oninput="amount.value=rangeInput.value" />
+            <input id="amount" type="number" min={min} max={max}oninput="rangeInput.value=amount.value" />
           </div>
         </form> 
 
         <h4> Search by Price Range </h4>
-        {/* <Slider
+        <Slider
           getAriaLabel={() => 'Price range'}
-          value={value}
+          value={[min, max]}
           onChange={handleChange}
           valueLabelDisplay="auto"
-          getAriaValueText={valuetext}
-        /> */}
+        />
 
         
         <h4> Order by Mileage </h4>
         <h4> Order by Price </h4>
+        <h5> Sources </h5>
 
 
         <h1> Display results: </h1>

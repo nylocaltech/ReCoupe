@@ -26,28 +26,32 @@ const dbController = {};
 //      };
 // };
 dbController.getAllCars = (req, res, next) => {
-  const querObj = {
-    text: "SELECT * FROM usedcar.cars;"
-  };
-
-  db.query(queryObj)
+  // const querObj = {
+  //   text: "SELECT * FROM usedcar.cars ORDER BY price;"
+  // };
+  
+  db.query("SELECT * FROM usedcar.cars ORDER BY price;")
     .then((response) => {
       res.locals.cars = response.rows;
-      console.log("query for cars by make successful");
+      console.log(res.locals.cars)
+      console.log("query for all cars successful");
       return next();
     })
     .catch((err) => {
       return next({
-        log: "Error in query for cars by make",
+        log: "Error in query for all cars",
         status: 400,
-        message: { err: "An error occurred" },
+        message: { err: "Error in query for all cars" },
       });
     });
 };
 
 dbController.getCarsByMake = (req, res, next) => {
-  const { make } = req.body;
-
+  //const { make } = req.body;
+  const {make} = req.params
+  console.log(req, 'request object')
+  console.log(req.params, 'request params');
+  console.log(make, 'this is make');
   const queryObj = {
     text: "SELECT * FROM usedcar.cars WHERE make = $1 ORDER BY price;",
     values: [make],
@@ -142,7 +146,7 @@ dbController.findOneCar = (req, res, next) => {
 };
 
 dbController.populateDb = (req, res, next) => {
-  const arrOfCarsCom = res.locals.cars;
+  // const arrOfCarsCom = res.locals.cars;
   // const arrOfTrueCarData = res.locals.trueCarData.slice();
   // const arrOfAutoTraderData = res.locals.autoTraderData.slice();
   console.log(arrOfCarsCom);
