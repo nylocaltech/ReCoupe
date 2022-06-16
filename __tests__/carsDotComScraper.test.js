@@ -7,14 +7,31 @@ describe('carsDotComScraper', () => {
   let data;
 
   // we expect this function to return an array
-  it('returns an array', () => {
-    data = async carsDotComScraper("toyota", "camry", '2015', '10029');
-    expect(await Array.isArray(data)).toBeTruthy();
+  it('returns an array', async () => {
+    data = await carsDotComScraper("toyota", "camry", '2015', '10029');
+    expect(Array.isArray(data)).toBeTruthy();
   })
 
   // we expect length of array to be greater than 0
-  it('returns an array with length greater than 0', () => {
-    data = async carsDotComScraper("toyota", "camry", '2015', '10029');
-    expect(await data.length).toBeGreaterThan(0);
+  it('returns an array with length greater than 0', async () => {
+    data = await carsDotComScraper("toyota", "camry", '2015', '10029');
+    expect(data.length).toBeGreaterThan(0);
+  })
+
+  it('each object in the array should have the price, image, mileage, year, make, model, url, zip, date', async () => {
+    data = await carsDotComScraper("toyota", "camry", '2015', '10029');
+    data.forEach((element) => {
+      expect(element.price).toBeGreaterThan(0);
+      expect(typeof element.image).toBe('string');
+      expect(element.mileage).toBeGreaterThanOrEqual(0);
+      expect(element.year).toBeGreaterThan(0);
+      expect(typeof element.make).toBe('string');
+      expect(typeof element.model).toBe('string');
+      expect(typeof element.url).toBe('string');
+      expect(element.zip).toBeGreaterThan(0);
+      expect(typeof element.date).toBe('string');
+
+    })
   })
 });
+
