@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import { useState } from 'react';
 import { Typography, AppBar, Card, CardContent, CardActions, CardMedia, CssBaseline, Grid, Toolbar, Container } from '@material-ui/Core';
 import styles from '../styles.scss';
+import CarsInfo from './CarsInfo';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { solid, brands } from '@fortawesome/fontawesome-svg-core/import.macro' 
 
@@ -19,7 +20,7 @@ const MainContainer = () => {
 
     return (
         <>
-        <CssBaseline />
+        {/* <CssBaseline /> */}
         <AppBar id='nav' position="relative" style={{ background: '#71C562' }}>
           <Toolbar>
             {/* <FontAwesomeIcon icon="fa-duotone fa-recycle" /> */}
@@ -30,14 +31,13 @@ const MainContainer = () => {
         <main>
           <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
             <Container maxWidth="false" id="homeBanner">
-            <img src='https://i.ibb.co/7G0TVrP/Png-Item-2905296-removebg-preview.png' alt='logo' style={{width: "90px"}}></img>
+            {/* <img src='https://i.ibb.co/7G0TVrP/Png-Item-2905296-removebg-preview.png' alt='logo' style={{width: "90px"}}></img> */}
             <Typography variant="h2" align='center' gutterBottom style={{ color: "white"}}>
               (Re)Coupe
             </Typography>
             <Typography variant="h5" align='center' gutterBottom style={{ color: "white"}}>
               Take a spin. Pass it on.
             </Typography>
-
             </Container>
             <Tabs value={value} onChange={handleChange} centered>
               {/* <Link to="/">
@@ -45,6 +45,9 @@ const MainContainer = () => {
               </Link>
               <Link to={'/trends'}>
                 <Tab label="Trends" />
+              </Link>
+              <Link to="/">
+                <Tab label="Link to Test Component" />
               </Link> */}
             </Tabs>
           </Box>
