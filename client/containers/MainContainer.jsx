@@ -9,7 +9,6 @@ import { Typography, AppBar, Card, CardContent, CardActions, CardMedia, CssBasel
 import styles from '../styles.scss';
 import CarsInfo from './CarsInfo';
 import Trends from './Trends.jsx';
-import Hello from '../Components/Hello';
 
 const MainContainer = () => {
 
