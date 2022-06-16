@@ -5,8 +5,8 @@ import Typography from '@mui/material/Typography';
 
 export default function QueryCreator() {
   const [make, setMake] = useState('');
-  const [min, setMin] = useState('');
-  const [max, setMax] = useState('');
+  const [min, setMin] = useState(0);
+  const [max, setMax] = useState(1);
   const [data, setData] = useState(' ');
 
   // const setBody = (make) => {
@@ -74,10 +74,14 @@ export default function QueryCreator() {
   }, [make]);
 
   const handleChange = (e) => {
-    setMin(e.target.value[0]);
-    setMax(e.target.value[1]);
+    console.log(e.target)
+
     console.log(min, max);
   }
+
+  useEffect(() => {
+    console.log(min, max);
+  }, [min, max]);
   
 
   /* fetch('/api/character', {
@@ -94,8 +98,8 @@ export default function QueryCreator() {
 
   
     return (
+      <>
       <div id='QueryBuilder'>
-        
         <Typography variant='h4'>Car Recommender</Typography>
         <br/>
         <form> 
@@ -158,7 +162,7 @@ export default function QueryCreator() {
 
         <h3> Based on your preferences, we recommend...</h3>
         <Typography variant='h3'></Typography>
-
+          
         <hr/>
         <br/>
         <br/>
@@ -195,26 +199,43 @@ export default function QueryCreator() {
       
           <div>
             {/* price range slider */}
+         {/*  <div>
             <h3>Min: {min}</h3>
             <h3>Max: {max}</h3>
             <input id="priceSlider" type="range" min={min} max={max} oninput="amount.value=rangeInput.value" />
             <input id="amount" type="number" min={min} max={max}oninput="rangeInput.value=amount.value" />
-            <Slider
+          </div> */}
+          </div>
+        {/* </form>  */}
+        <h3>Min: {min}</h3>
+        <h3>Max: {max}</h3>
+        {/* <h4> Search by Price Range </h4> */}
+        <Slider
           getAriaLabel={() => 'Price range'}
-          value={[min, max]}
+          min={min}
+          max={max}
+          //value={[min, max]}
           onChange={handleChange}
           valueLabelDisplay="auto"
         />
-          </div>
-          </fieldset>
+        <Slider
+          getAriaLabel={() => 'Price range'}
+          min={min}
+          max={max}
+          //value={[min, max]}
+          onChange={handleChange}
+          valueLabelDisplay="auto"
+        />
+          {/* </div> */}
+      
+       
+        </fieldset>
         </form> 
-
-        
 
           <hr/>
           
 
-<fieldset class='fieldset'>
+  <fieldset class='fieldset'>
             <legend>Check these listings:</legend>  
             <label>
               <Typography variant='h7'>AutoTrader</Typography>
@@ -258,6 +279,7 @@ export default function QueryCreator() {
         <h4>Histogram: types of cars</h4>
 
       </div>
+      </>
     );
   }
   
