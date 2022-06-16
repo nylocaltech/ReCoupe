@@ -11,4 +11,12 @@ dbRouter.post("/test", (req, res) => {
   res.status(200).send("hello");
 });
 
+dbRouter.get("/findOne", dbController.findOneCar, (req, res) => {
+  res.status(200).json(res.locals.carData);
+});
+
+dbRouter.post("/insertData", dbController.insertCarsData, (req, res) => {
+  res.status(200).send("successfully inserted cars data to database");
+});
+
 module.exports = dbRouter;
