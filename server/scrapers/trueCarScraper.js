@@ -13,7 +13,6 @@ const trueCarScraper = async (make, model, minYear, zip) => {
       const $ = cheerio.load(htmlData);
       const date = new Date();
       const actualDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-      console.log('hi')
       const scrape = $("[data-test='allVehicleListings']").find('.vehicle-card').map((i, el) => {    
         const vehicleObj = {};
         const priceElement = $(el).find("[data-test='vehicleListingPriceAmount']").find('.heading-3');
@@ -47,7 +46,7 @@ const trueCarScraper = async (make, model, minYear, zip) => {
  await cheerioScrapeTrueCar(`https://www.truecar.com/used-cars-for-sale/listings/${make}/${model}/year-${minYear}-max/location-${zip}/?sort[]=price_asc`);
  console.log('cars', cars, 'end cars')
  
- return cars.slice(3);
+ return cars.slice(2);
 }
 
 

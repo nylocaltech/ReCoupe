@@ -4,7 +4,6 @@ import { useState } from 'react';
 import CarsList from '../Components/CarsList';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-// import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
 import Tab from '@mui/material/Tab';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
