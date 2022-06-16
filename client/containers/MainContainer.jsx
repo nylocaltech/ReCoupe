@@ -2,13 +2,13 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import Button from '@mui/material/Button';
 import {Link} from 'react-router-dom';
 import { useState } from 'react';
 import { Typography, AppBar, Card, CardContent, CardActions, CardMedia, CssBaseline, Grid, Toolbar, Container } from '@material-ui/Core';
 import styles from '../styles.scss';
 import CarsInfo from './CarsInfo';
 import Trends from './Trends.jsx';
-import Hello from '../Components/Hello';
 
 const MainContainer = () => {
 
@@ -24,8 +24,9 @@ const MainContainer = () => {
         <AppBar id='nav' position="relative" style={{ background: '#71C562' }}>
           <Toolbar>
             <Typography variant='h6'>(Re)Coupe</Typography>
+            <div id="toolbar_links">
             <Link to="/">
-                <Tab label="Home Page" />
+                <Tab label="Search" />
               </Link>
               <Link to={'/trends'}>
                 <Tab label="Trends" />
@@ -33,9 +34,7 @@ const MainContainer = () => {
               <Link to={'/login'}>
                 <Tab label="Log In" />
               </Link>
-              <Link to={'/hello'}>
-                <Tab label="Show Hello" />
-              </Link>
+            </div>
           </Toolbar>
         </AppBar>
         
