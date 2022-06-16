@@ -1,102 +1,78 @@
 import React, { useState } from 'react';
-import { Button } from '@mui/material';
+import { Button, Checkbox, FormGroup } from '@mui/material';
 import CarsList from '../Components/CarsList';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import SendIcon from '@mui/icons-material/Send';
-import Stack from '@mui/material/Stack';
-import Checkbox from "@material-ui/core/Checkbox";
-import InputLabel from "@material-ui/core/InputLabel";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import { MenuProps, useStyles, options } from "../Utils";
+
 
 export default function QueryCreator() {
-    // const classes = useStyles();
-    // const [selected, setSelected] = useState([]);
-    // const isAllSelected =
-    //   options.length > 0 && selected.length === options.length;
-  
-    // const handleChange = (event) => {
-    //   const value = event.target.value;
-    //   if (value[value.length - 1] === "all") {
-    //     setSelected(selected.length === options.length ? [] : options);
-    //     return;
-    //   }
-    //   setSelected(value);
-    // };
   
     return (
       <div id='QueryBuilder'>
 
-        {/* === FORM ===
-        Select type of vehicle 
-        <h3> What type of vehicle are you interested in? </h3>
+        <h3> What's most important to you in a car? </h3>
+        <form> 
+          <fieldset>
+            <label>
+              <p>Fuel Efficiency</p>
+              <input name="priority" type="radio" value="env"/>
+            </label>
+            <label>
+              <p>Cost</p>
+              <input name="priority" type="radio" value="cost"/>
+            </label>
+            <label>
+              <p>Safety</p>
+              <input name="priority" type="radio" value="safety"/>
+            </label>
+            <label>
+              <p>Style</p>
+              <input name="priority" type="radio" value="luxury"/>
+            </label>
+          </fieldset>
+        </form>
 
-        <FormControl className={classes.formControl}>
-            <InputLabel id="mutiple-select-label">Multiple Select</InputLabel>
-            <Select
-            labelId="mutiple-select-label"
-            multiple
-            value={selected}
-            onChange={handleChange}
-            renderValue={(selected) => selected.join(", ")}
-            MenuProps={MenuProps}
-            >
-            <MenuItem
-                value="all"
-                classes={{
-                root: isAllSelected ? classes.selectedAll : ""
-                }}
-            >
-                <ListItemIcon>
-                <Checkbox
-                    classes={{ indeterminate: classes.indeterminateColor }}
-                    checked={isAllSelected}
-                    indeterminate={
-                      selected.length > 0 && selected.length < options.length
-                    }
-                />
-                </ListItemIcon>
-                <ListItemText
-                classes={{ primary: classes.selectAllText }}
-                primary="Select All"
-                />
-            </MenuItem>
-            {let options = ['Sedan', 'Coupe']} 
-            {options.map((option) => (
-                <MenuItem key={option} value={option}>
-                <ListItemIcon>
-                    <Checkbox checked={selected.indexOf(option) > -1} />
-                </ListItemIcon>
-                <ListItemText primary={option} />
-                </MenuItem>
-            ))}
-            </Select>
-        </FormControl> }
+        <h3> What kind of car are you looking for? </h3>
 
-        {/* Select which values are important to you */}
+        <form> 
+          <fieldset>
+            <label>
+              <p>Sedan</p>
+              <input name="vehicletype" type="radio" value="sedan"/>
+            </label>
+            <label>
+              <p>Van</p>
+              <input name="vehicletype" type="radio" value="van"/>
+            </label>
+            <label>
+              <p>Truck</p>
+              <input name="vehicletype" type="radio" value="truck"/>
+            </label>
+            <label>
+              <p>SUV</p>
+              <input name="vehicletype" type="radio" value="suv"/>
+            </label>
+            <label>
+              <p>Luxury Coupe</p>
+              <input name="vehicletype" type="radio" value="coupe"/>
+            </label>
+          </fieldset>
+          <button> Submit </button>
+        </form>
 
-        <h3> What's most important to you in a car? (Check all that apply) </h3>
+        <h3> We recommend ...</h3>
 
-        {/* <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Energy Efficiency</InputLabel>
-                <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={safety}
-                    label="Safety"
-                    onChange={handleChange}
-                >
-                    <MenuItem value={"Price"}>Cost Efficiency</MenuItem>
-                    <MenuItem value={"Environment"}>Family Friendly</MenuItem>
-                    <MenuItem value={"Environment"}>Luxury</MenuItem>
-                    <MenuItem value={"Environment"}>Safety</MenuItem>
-                </Select>
-        </FormControl> */}
+        <h4> Search by Make and Model </h4>
+        <h4> Search by Price Range </h4>
+        <h4> Order by Mileage </h4>
+        <h4> Order by Price </h4>
+
+
+        <h1> Display results: </h1>
+
+        <h4>Count of Results</h4>
+        <h4>Average Price</h4>
+        <h4>Line chart: mileage by price</h4>
+        <h7>(highlights best deals)</h7>
+        <h4>Histogram: types of cars</h4>
 
       </div>
     );

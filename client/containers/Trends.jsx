@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import QueryCreator from '../Components/QueryCreator'
+import QueryCreator from '../Components/QueryCreator';
+import Box from '@mui/material/Box';
 
 export default class Trends extends Component {
     
@@ -9,10 +10,11 @@ export default class Trends extends Component {
 
     render() {
         return(
-            <QueryCreator />
-            // <>
-            // Hello World
-            // </>
+            <>
+            <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                <QueryCreator />
+            </Box>
+            </>
         )
     }
 }
