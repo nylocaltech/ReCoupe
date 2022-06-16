@@ -1,0 +1,36 @@
+// Variable overrides first
+$primary: rgb(11, 101, 73);
+$enable-shadows: true;
+$prefix: "mo-";
+
+// Then import Bootstrap
+// @import "../node_modules/bootstrap/scss/bootstrap";
+
+// Home
+#homeBanner {
+ background-image: url('https://cdn.hiconsumption.com/wp-content/uploads/2017/10/Best-Adventure-Vehicles-1087x725.jpg') !important;
+ background-repeat: no repeat !important;
+ background-size: cover !important;
+ height: 400px !important;
+ padding-top: 50px !important;
+}
+
+// Search bar
+ #search {
+    // border: 1px solid #ccc;
+    margin-top: -30px;
+    // margin-bottom: 100px;
+    // background-color: white !important;
+    // opacity: 0.75;
+}
+
+// App bar / Nav
+#nav {
+    display: flex;
+}
+
+// Trends page
+#QueryBuilder {
+    padding-left: 25px;
+    margin-top: -20px;
+}

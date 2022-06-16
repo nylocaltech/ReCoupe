@@ -34,13 +34,12 @@ export default function CarsList(props) {
     <ListSubheader sx={{
       display: "flex",
       justifyContent: 'center',
-        padding: '10px 0',
-        maxWidth: 500,
-        border: '1px solid #e0e0e0',
-        boxShadow: '0px 11px 10px -7px rgba(194,194,194,0.66)'
+      padding: '10px 0',
+      maxWidth: 500,
+      border: '1px solid #e0e0e0',
+      boxShadow: '0px 11px 10px -7px rgba(194,194,194,0.66)'
     }}>
-      <Typography variant="h4" sx={{
-        color: 'black'
+      <Typography variant="h8" sx={{
       }}>
         {props.name}
       </Typography>

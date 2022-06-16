@@ -4,8 +4,8 @@ import { useState } from 'react';
 import CarsList from '../Components/CarsList';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import SendIcon from '@mui/icons-material/Send';
-import Stack from '@mui/material/Stack';
+import Tab from '@mui/material/Tab';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 export default function CarsInfo() {
 
@@ -17,6 +17,24 @@ export default function CarsInfo() {
   const [year, setYear] = useState(2022);
   const [zip, setZip] = useState(10001);
 
+  // Adding MUI Theme -- is this working?
+  const theme = createTheme({
+    palette: {
+      type: 'light',
+      primary: {
+        main: '#1c7356',
+        light: '#84c5ad',
+        dark: '#0c3f2d',
+      },
+      secondary: {
+        main: '#71C562',
+      },
+    },
+    spacing: 8,
+  });
+
+
+  // React using hooks to live update the forms after every keypress / value change
   const updateMake = (e) => {
     setMake(e.target.value)
   }
@@ -42,10 +60,9 @@ export default function CarsInfo() {
       .catch(err => console.log(err))
   }
 
-
   return (
     <>
-     <Box
+     <Box id="search"
       component="form"
       sx={{
         '& > :not(style)': { m: 1, width: '25ch' },
@@ -57,10 +74,10 @@ export default function CarsInfo() {
       noValidate
       autoComplete="off"
     >
-      <TextField onChange={updateMake} color="secondary" label="Make" variant="outlined" />
-      <TextField onChange={updateModel} id="outlined-basic" label="Model" variant="outlined" />
-      <TextField onChange={updateYear} id="outlined-basic" label="Minimum Year" variant="outlined" />
-      <TextField onChange={updateZip} id="outlined-basic" label="Zip" variant="outlined" />
+      <TextField onChange={updateMake} color="primary" label="Make" variant="filled" />
+      <TextField onChange={updateModel} id="outlined-filled" label="Model" variant="filled" />
+      <TextField onChange={updateYear} id="outlined-filled" label="Minimum Year" variant="filled" />
+      <TextField onChange={updateZip} id="outlined-filled" label="Zip" variant="filled" />
       <Button variant="contained" color="success" onClick={fetching}>Search</Button>
     </Box>
     
@@ -72,6 +89,6 @@ export default function CarsInfo() {
       <CarsList carsArr={autoTrader} name={'AutoTrader'}/>
       <CarsList carsArr={trueCar} name={'True Car'} />
     </div>
-    </>
+  </>
   )
 }
