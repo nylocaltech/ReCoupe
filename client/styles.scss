@@ -38,3 +38,52 @@ $prefix: "mo-";
 #loginform {
     margin-top: -50px;
 }
+
+#toolbar_links {
+    margin-left: 200px;
+}
+
+#toolbar_links a {
+    text-decoration: none;
+    color: white;
+    font-size: 17px !important;
+}
+
+#toolbar_links a:hover {
+    color: rgb(8, 97, 180);
+}
+
+
+// Form
+legend {
+    background-color: #000;
+    color: #fff;
+    padding: 3px 6px;
+}
+
+input {
+    margin: 1rem;
+    margin-right: 2rem;
+    border: 1px lightgray dotted;
+}
+
+.fieldset > p {
+    font-family: Helvetica, Arial, sans-ser !important;
+    font-size: 2rem !important;
+    margin-left: 20px;
+}
+
+.form-control {
+    font-family: Helvetica, Arial, sans-ser !important;
+    font-size: 2rem !important;
+    font-weight: bold !important;
+    display: grid !important;
+    grid-template-columns: 1em auto !important;
+    gap: 0.5em !important;
+}
+
+// Dropdown
+select > option {
+    font-size: 14px;
+    padding: 10px;
+}
