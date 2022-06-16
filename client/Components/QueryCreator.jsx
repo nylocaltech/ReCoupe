@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
-import { Button, Checkbox, FormGroup } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Button, Checkbox, FormGroup, Slider } from '@mui/material';
 import CarsList from '../Components/CarsList';
 
 
 export default function QueryCreator() {
+  const [make, setMake] = useState('');
+  const [priceRange, setPriceRange] = useState('');
+  const [min, setMin] = useState('');
+  const [max, setMax] = useState('');
+  const [data, setData] = useState(' ');
+
+  useEffect(() => {
+    console.log('heeey')
+    // send fetch request to get all cars
+
+  }, [state])
   
     return (
       <div id='QueryBuilder'>
@@ -60,8 +71,42 @@ export default function QueryCreator() {
 
         <h3> We recommend ...</h3>
 
-        <h4> Search by Make and Model </h4>
+        <h4> Search by Make </h4>
+        <form>
+          <select value={ language } onChange={(e) => { setLanguage(e.target.value);}}>
+                    <option value="Blank">Please select one</option>
+                    <option value="Audi">Audi</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Chevrolet">Chevrolet</option>
+                    <option value="Dodge">Dodge</option>
+                    <option value="Ferrari">Ferrari</option>
+                    <option value="Ford">Ford</option>
+                    <option value="Honda">Honda</option>
+                    <option value="Ford">Lexus</option>
+                    <option value="Maserati">Maserati</option>
+                    <option value="Mercedes-Benz">Mercedes</option>
+                    <option value="Nissan">Nissan</option>
+                    <option value="Porsche">Porsche</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Volkswagen">Volkswagen</option>
+          </select>
+          <div>
+            {/* price range slider */}
+            <input id="priceSlider" type="range" min={this.state.min} max={this.state.max} oninput="amount.value=rangeInput.value" />
+            <input id="amount" type="number" value="100" min="0" max="200" oninput="rangeInput.value=amount.value" />
+          </div>
+        </form> 
+
         <h4> Search by Price Range </h4>
+        {/* <Slider
+          getAriaLabel={() => 'Price range'}
+          value={value}
+          onChange={handleChange}
+          valueLabelDisplay="auto"
+          getAriaValueText={valuetext}
+        /> */}
+
+        
         <h4> Order by Mileage </h4>
         <h4> Order by Price </h4>
 
