@@ -9,6 +9,7 @@ import styles from '../styles.scss';
 import CarsInfo from './CarsInfo';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { solid, brands } from '@fortawesome/fontawesome-svg-core/import.macro' 
+import Trends from './Trends.jsx';
 
 const MainContainer = () => {
 
