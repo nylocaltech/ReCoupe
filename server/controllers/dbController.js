@@ -25,30 +25,78 @@ const dbController = {};
 //         message: { err: "An error occurred" }),
 //      };
 // };
-
-dbController.getCarsByMakeAndModel = (req, res, next) => {
-  const { make, model } = req.body;
-
-  const queryObj = {
-    text: "SELECT * FROM usedcar.cars WHERE make = $1 AND model = $2 ORDER BY price;",
-    values: [make, model],
-  };
-
-  db.query(queryObj)
+dbController.getAllCars = (req, res, next) => {
+  // const querObj = {
+  //   text: "SELECT * FROM usedcar.cars ORDER BY price;"
+  // };
+  
+  db.query("SELECT * FROM usedcar.cars ORDER BY price;")
     .then((response) => {
-      res.locals.carsByMakeAndModel = response.rows;
-      console.log("query for cars by make and model successful");
+      res.locals.cars = response.rows;
+      console.log(res.locals.cars)
+      console.log("query for all cars successful");
       return next();
     })
     .catch((err) => {
       return next({
-        log: "Error in query for cars by make and model",
+        log: "Error in query for all cars",
+        status: 400,
+        message: { err: "Error in query for all cars" },
+      });
+    });
+};
+
+dbController.getCarsByMake = (req, res, next) => {
+  //const { make } = req.body;
+  const {make} = req.params
+  console.log(req, 'request object')
+  console.log(req.params, 'request params');
+  console.log(make, 'this is make');
+  const queryObj = {
+    text: "SELECT * FROM usedcar.cars WHERE make = $1 ORDER BY price;",
+    values: [make],
+  };
+
+  db.query(queryObj)
+    .then((response) => {
+      res.locals.cars = response.rows;
+      console.log("query for cars by make successful");
+      return next();
+    })
+    .catch((err) => {
+      return next({
+        log: "Error in query for cars by make",
         status: 400,
         message: { err: "An error occurred" },
       });
     });
 };
 
+// cars by price range
+dbController.getCarsByPriceRange = (req, res, next) => {
+  const {minPrice, maxPrice} = req.body;
+
+  const queryObj = {
+    text: "SELECT * FROM usedcar.cars WHERE $1 < price AND price < $2 ORDER BY price;",
+    values: [minPrice, maxPrice],
+  };
+
+  db.query(queryObj)
+    .then((response) => {
+      res.locals.cars = response.rows;
+      console.log("query for cars by price range");
+      return next();
+    })
+    .catch((err) => {
+      return next({
+        log: "Error in query for cars by price range",
+        status: 400,
+        message: { err: "An error occurred" },
+      });
+    });
+};
+
+  
 dbController.insertCarsData = (req, res, next) => {
   const { price, image, mileage, year, make, model, url, zip, date, dealer } =
     req.body;
@@ -83,7 +131,7 @@ dbController.findOneCar = (req, res, next) => {
 
   db.query(queryObj)
     .then((response) => {
-      res.locals.carData = response.rows;
+      res.locals.cars = response.rows;
       return next();
     })
     .catch((err) => {
@@ -98,7 +146,7 @@ dbController.findOneCar = (req, res, next) => {
 };
 
 dbController.populateDb = (req, res, next) => {
-  const arrOfCarsCom = res.locals.carsComData;
+  // const arrOfCarsCom = res.locals.cars;
   // const arrOfTrueCarData = res.locals.trueCarData.slice();
   // const arrOfAutoTraderData = res.locals.autoTraderData.slice();
   console.log(arrOfCarsCom);

@@ -2,17 +2,20 @@ const express = require("express");
 const dbController = require("../controllers/dbController");
 const dbRouter = express.Router();
 
-dbRouter.post("/request", dbController.getCarsByMakeAndModel, (req, res) => {
-  res.status(200).json({ carsByMakeAndModel: res.locals.carsByMakeAndModel });
-});
-
-dbRouter.post("/test", (req, res) => {
-  console.log("hello");
-  res.status(200).send("hello");
-});
+dbRouter.get('/', dbController.getAllCars, (req, res) => {
+  res.status(200).json(res.locals.cars);
+})
 
 dbRouter.get("/findOne", dbController.findOneCar, (req, res) => {
-  res.status(200).json(res.locals.carData);
+  res.status(200).json(res.locals.cars);
+});
+
+dbRouter.get("/requestByMake/:make", dbController.getCarsByMake, (req, res) => {
+  res.status(200).json({ cars: res.locals.cars});
+});
+
+dbRouter.post("/requestByPrice", dbController.getCarsByPriceRange, (req, res) => {
+  res.status(200).json({ cars: res.locals.cars });
 });
 
 dbRouter.post("/insertData", dbController.insertCarsData, (req, res) => {
