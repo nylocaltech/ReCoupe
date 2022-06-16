@@ -95,6 +95,7 @@ async function start(make, model, minYear, zip){
       url: urlData[i],
       zip: 11228,
       date: actualDate,
+      dealer: 'TrueCars.com'
     }
     Alldata.push(data)
   }
