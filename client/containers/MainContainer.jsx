@@ -7,8 +7,6 @@ import { useState } from 'react';
 import { Typography, AppBar, Card, CardContent, CardActions, CardMedia, CssBaseline, Grid, Toolbar, Container } from '@material-ui/Core';
 import styles from '../styles.scss';
 import CarsInfo from './CarsInfo';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { solid, brands } from '@fortawesome/fontawesome-svg-core/import.macro' 
 import Trends from './Trends.jsx';
 
 const MainContainer = () => {
@@ -24,8 +22,13 @@ const MainContainer = () => {
         {/* <CssBaseline /> */}
         <AppBar id='nav' position="relative" style={{ background: '#71C562' }}>
           <Toolbar>
-            {/* <FontAwesomeIcon icon="fa-duotone fa-recycle" /> */}
             <Typography variant='h6'>(Re)Coupe</Typography>
+            <Link to="/">
+                <Tab label="Home Page" />
+              </Link>
+              <Link to={'/trends'}>
+                <Tab label="Trends" />
+              </Link>
           </Toolbar>
         </AppBar>
         
@@ -41,15 +44,6 @@ const MainContainer = () => {
             </Typography>
             </Container>
             <Tabs value={value} onChange={handleChange} centered>
-              {/* <Link to="/">
-                <Tab label="Home Page" />
-              </Link>
-              <Link to={'/trends'}>
-                <Tab label="Trends" />
-              </Link>
-              <Link to="/">
-                <Tab label="Link to Test Component" />
-              </Link> */}
             </Tabs>
           </Box>
         </main>
