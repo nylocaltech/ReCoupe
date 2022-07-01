@@ -12,7 +12,7 @@ ITERATION ACCOMPLISHMENTS:
 
 3. Created Custom SQL query builder for user to compose advanced queries, aggregating and comparing prices, models, mileage, and stats across multiple sites. Filter and order by price or year.
 
-4. Created Car Recommender based on priorities: safety, price, luxury/styl. 
+4. Created Car Recommender based on priorities: safety, price, luxury/style. 
 
 5. Implemented authentication, user schemas and Postgres tables, ability to save user searches. Roadmap for next features: ML recommendation engine for used cars according to user searches.
 
